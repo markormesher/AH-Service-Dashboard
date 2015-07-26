@@ -1,0 +1,23 @@
+.ticker {
+	margin: 12px 0 0;
+	padding: 0;
+	width: 100%;
+	height: 4em;
+	background-color: rgb(255, 255, 255);
+	overflow: hidden;
+}
+
+.ticker-text {
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	display: inline-block;
+	line-height: 1.6em;
+	font-size: 2.5em;
+	font-weight: bold;
+	color: rgb(0, 85, 164);
+}
+
+.ticker-text span {
+	color: rgb(142, 190, 63);
+}

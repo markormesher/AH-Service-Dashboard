@@ -1,0 +1,185 @@
+/**********************
+ * Position and style *
+ **********************/
+
+.wrapper, p {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	width: calc(100% - 12px);
+	height: calc(100% - 12px - 4em);
+}
+
+.note-wrapper {
+	margin-top: 12px;
+	margin-left: 12px;
+	float: left;
+}
+
+.note {
+	background: url('../images/note-point.png') no-repeat bottom right;
+	width: 100%;
+	height: 100%;
+}
+
+.note-extra-bg {
+	margin: 0;
+	padding: 0;
+	background: no-repeat center;
+	width: 100%;
+	height: 100%;
+}
+
+.note-stack {
+	float: left;
+}
+
+.note-stack .note-wrapper {
+	float: none;
+}
+
+.note-center-outer {
+	display: table;
+	text-align: center;
+}
+
+.note-center-inner {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.note-blue {
+	background-color: rgb(0, 85, 164);
+}
+
+.note-light-blue {
+	background-color: rgb(173, 207, 222);
+}
+
+.note-green {
+	background-color: rgb(142, 190, 63);
+}
+
+.note-yellow {
+	background-color: rgb(255, 203, 5);
+}
+
+.note-orange {
+	background-color: rgb(244, 119, 33);
+}
+
+.note-pink {
+	background-color: rgb(216, 61, 150);
+}
+
+.note-purple {
+	background-color: rgb(102, 45, 145);
+}
+
+.note-white {
+	background-color: rgb(255, 255, 255);
+}
+
+.note-w-20 {
+	width: calc(20% - 12px);
+}
+
+.note-w-20.note-stack {
+	width: 20%;
+}
+
+.note-w-40 {
+	width: calc(40% - 12px);
+}
+
+.note-w-40.note-stack {
+	width: 40%;
+}
+
+.note-w-60 {
+	width: calc(60% - 12px);
+}
+
+.note-w-60.note-stack {
+	width: 60%;
+}
+
+.note-w-80 {
+	width: calc(80% - 12px);
+}
+
+.note-w-80.note-stack {
+	width: 80%;
+}
+
+.note-w-100 {
+	width: calc(100% - 12px);
+}
+
+.note-w-100.note-stack {
+	width: 100%;
+}
+
+.note-h-1 {
+	height: calc(25% - 12px);
+}
+
+.note-h-1.note-stack {
+	height: 25%;
+}
+
+.note-h-2 {
+	height: calc(50% - 12px)
+}
+
+.note-h-2.note-stack {
+	height: 50%;
+}
+
+.note-h-3 {
+	height: calc(75% - 12px);
+}
+
+.note-h-3.note-stack {
+	height: 27%;
+}
+
+.note-h-4 {
+	height: calc(100% - 12px);
+}
+
+.note-h-4.note-stack {
+	height: 100%;
+}
+
+/*******************
+ * Common elements *
+ *******************/
+
+p.note-title {
+	color: #ffffff;
+	text-align: center;
+	font-size: 1.8em;
+	font-weight: bold;
+	padding-top: 6px;
+}
+
+/*********
+ * Clock *
+ *********/
+
+p.clock-time, p.clock-date {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+p.clock-time {
+	font-size: 3.2em;
+}
+
+p.clock-date {
+	font-size: 2.5em;
+}
