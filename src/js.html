@@ -1,0 +1,21 @@
+<html>
+<head>
+
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	window._DATA = [];
+	var sourceLoaded = function(x) {
+		window.top.postMessage({
+			sender: 'self',
+			source: x,
+			data: window._DATA[x]
+		}, '*');
+	};
+</script>
+<script type="text/javascript" src="data/dial-1.txt"></script>
+<script type="text/javascript" src="data/dial-2.txt"></script>
+<script type="text/javascript" src="data/news-ticker.txt"></script>
+</body>
+</html>

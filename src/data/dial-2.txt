@@ -1,0 +1,33 @@
+window._DATA['dial-2'] = (function () {/*
+
+------------------------------------------------------
+--------------------- HOW TO USE ---------------------
+------------------------------------------------------
+-- Place the following 5 values on separate lines   --
+-- below, in order:                                 --
+--  * Note title                                    --
+--  * Minimum value                                 --
+--  * Maximum value                                 --
+--  * Actual value                                  --
+--  * Target value                                  --
+------------------------------------------------------
+
+-----------------------------------------------
+-- Place your content below this line.       --
+-- DO NOT edit this line, or anything above. --
+-----------------------------------------------
+
+
+MTD GoS
+0
+100
+89
+75
+
+
+-----------------------------------------------
+-- DO NOT edit this line, or anything below. --
+-----------------------------------------------
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('dial-2');

@@ -1,62 +1,40 @@
-######################
-## USEFUL FUNCTIONS ##
-######################
+###################
+## DATA HANDLING ##
+###################
+
+window._DATA = {}
+window._SOURCES = {}
+
+# receive data
+window.onmessage = (e) ->
+  return if e?.data?.sender != 'self'
+  window._DATA[e.data.source] = e.data.data
+  for name, waiting of window._SOURCES
+    if e.data.source == name then initNotes(i) for i in waiting
+
+# reload the iframe
+reloadDataIframe = () ->
+  $('#js-iframe').attr('src', 'js.html');
+  setTimeout(reloadDataIframe, 5000);
+setTimeout(reloadDataIframe, 2000);
 
 guidCount = 1;
 getGuid = () -> return ++guidCount;
 
+# callback for a loaded information source
+window.sourceLoaded = (s) ->
+  waiting = window._SOURCES[s]
+  if ($.isArray(waiting))
+    initNotes(n) for n in waiting
+
+# read the clean lines from an input source
 readCleanLines = (source) ->
-  raw = source.split("\n")
+  raw = window._DATA[source].split("\n")
   return (r.trim() for r in raw when r.trim().length > 0 && r.substr(0, 2) != '--')
 
-###########
-## NOTES ##
-###########
-
-# define notes
-notes = [
-  {
-    id: 1, job: 'clock'
-  },
-  {
-    id: 2, job: 'identify'
-  },
-  {
-    id: 3, job: 'identify'
-  },
-  {
-    id: 4,
-    job: 'dial',
-    data: {
-      source: dialOneContent
-    }
-  },
-  {
-    id: 5,
-    job: 'dial',
-    data: {
-      source: dialTwoContent
-    }
-  },
-  {
-    id: 6, job: 'identify'
-  },
-  {
-    id: 7, job: 'identify'
-  },
-  {
-    id: 8, job: 'identify'
-  },
-  {
-    id: 9, job: 'identify'
-  },
-  {
-    id: 10, job: 'identify'
-  },
-  {
-    id: 11, job: 'identify'
-  }
-]
+######################
+## USEFUL FUNCTIONS ##
+######################
 
 # note getter
 getNote = (i) -> $ 'div#note-' + i
@@ -76,19 +54,81 @@ getCenterDiv = (note, full = true) ->
 setNoteTitle = (note, title) ->
   note.html(note.html() + '<p class="note-title">' + title + '</p>')
 
+###########
+## NOTES ##
+###########
+
+# define notes
+notes = [
+  {
+    id: 0, job: 'ticker', data: 'news-ticker'
+  },
+  {
+    id: 1, job: 'clock', data: null
+  },
+  {
+    id: 2, job: 'identify', data: null
+  },
+  {
+    id: 3, job: 'identify', data: null
+  },
+  {
+    id: 4, job: 'dial', data: 'dial-1'
+  },
+  {
+    id: 5, job: 'dial', data: 'dial-2'
+  },
+  {
+    id: 6, job: 'identify', data: null
+  },
+  {
+    id: 7, job: 'identify', data: null
+  },
+  {
+    id: 8, job: 'identify', data: null
+  },
+  {
+    id: 9, job: 'identify', data: null
+  },
+  {
+    id: 10, job: 'identify', data: null
+  },
+  {
+    id: 11, job: 'identify', data: null
+  }
+]
+
 # start tasks
 $(document).ready ->
   initNotes()
-  initTicker()
 
 # note initialisation
-initNotes = -> loadNote(n.id, n.job, n?.data) for n in notes
+initNotes = (n = -1) ->
+# init a specific note
+  if (n >= 0)
+    loadNote(notes[n].id, notes[n].job, notes[n]?.data)
+    return
+
+  # init all notes
+  i = 0;
+  loop
+    data = notes[i]?.data
+    if (data == null)
+      loadNote(notes[i].id, notes[i].job, null)
+    else
+      if ($.isArray(window._SOURCES[data]))
+        window._SOURCES[data][window._SOURCES[data].length] = i
+      else
+        window._SOURCES[data] = [i]
+    ++i;
+    break if (i == notes.length)
 
 # note loader
 loadNote = (id, role, data) ->
   switch role
+    when 'ticker' then load_ticker()
     when 'identify' then load_identify(id)
-    when 'clock' then load_clock(id, data)
+    when 'clock' then load_clock(id)
     when 'dial' then load_dial(id, data)
 
 ##################
@@ -106,7 +146,7 @@ load_identify = (id) ->
 #####################
 
 # clock note
-load_clock = (id, data) ->
+load_clock = (id) ->
   note = getNote(id)
   bg = getBackgroundDiv(note)
   bg.css('background-image', 'url("images/clock-bg.png")');
@@ -154,10 +194,11 @@ getMonthName = (n) ->
 
 load_dial = (id, data) ->
   ## read values
-  values = readCleanLines(data.source)
+  values = readCleanLines(data)
 
   ## set up note
   note = getNote(id)
+  note.html('')
   center = getCenterDiv(note, false)
   setNoteTitle(center, values[0])
   knobGuid = getGuid()
@@ -185,15 +226,23 @@ tickerWidth = tickerWrapperWidth = tickerLeft = 0
 tickerSeparator = '<span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>'
 
 # ticker initialisation
-initTicker = () ->
+tickerRunning = false;
+load_ticker = () ->
+  return if tickerRunning
+  tickerRunning = true
   loadTickerText()
+  getTickerWidths()
+  tickerMove()
+
+# gets ticker widths
+getTickerWidths = () ->
   tickerWidth = $('.ticker-text').width()
   tickerWrapperWidth = $('.ticker').width()
-  tickerMove()
 
 # ticker text population
 loadTickerText = () ->
-  lines = readCleanLines(newsTickerContent)
+  $('.ticker-text').html('');
+  lines = readCleanLines('news-ticker')
   addToTicker(r, i) for r, i in lines
 
 # add a string to the ticker
@@ -205,6 +254,8 @@ addToTicker = (r, i) ->
 # ticker mover
 tickerMove = () ->
   if --tickerLeft < -tickerWidth
+    loadTickerText()
+    getTickerWidths()
     tickerLeft = tickerWrapperWidth
   $('.ticker-text').css('margin-left', tickerLeft + 'px')
   setTimeout(tickerMove, 16)

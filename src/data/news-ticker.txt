@@ -1,4 +1,4 @@
-var newsTickerContent = (function () {/*
+window._DATA['news-ticker'] = (function () {/*
 
 ------------------------------------------------------
 --------------------- HOW TO USE ---------------------
@@ -23,3 +23,4 @@ No TLs from 3:00 - 3:30pm today
 -----------------------------------------------
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('news-ticker');
