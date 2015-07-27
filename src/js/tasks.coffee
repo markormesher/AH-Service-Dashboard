@@ -1,3 +1,14 @@
+######################
+## USEFUL FUNCTIONS ##
+######################
+
+guidCount = 1;
+getGuid = () -> return ++guidCount;
+
+readCleanLines = (source) ->
+  raw = source.split("\n")
+  return (r.trim() for r in raw when r.trim().length > 0 && r.substr(0, 2) != '--')
+
 ###########
 ## NOTES ##
 ###########
@@ -17,14 +28,14 @@ notes = [
     id: 4,
     job: 'dial',
     data: {
-      title: 'Today\'s GOS'
+      source: dialOneContent
     }
   },
   {
     id: 5,
     job: 'dial',
     data: {
-      title: 'MTD GOD'
+      source: dialTwoContent
     }
   },
   {
@@ -56,9 +67,9 @@ getBackgroundDiv = (note) ->
   return note.find('.note-extra-bg')
 
 # creates a centered div in a note
-getCenterDiv = (note) ->
-  note.addClass('note-center-outer')
-  note.html('<div class="note-center-inner"></div>')
+getCenterDiv = (note, full = true) ->
+  note.addClass('note-center-outer' + (if full then '-full' else ''))
+  note.html(note.html() + '<div class="note-center-inner"></div>')
   return note.find('.note-center-inner')
 
 # adds a title to a note
@@ -142,8 +153,28 @@ getMonthName = (n) ->
 ####################
 
 load_dial = (id, data) ->
+  ## read values
+  values = readCleanLines(data.source)
+
+  ## set up note
   note = getNote(id)
-  setNoteTitle(note, data.title)
+  center = getCenterDiv(note, false)
+  setNoteTitle(center, values[0])
+  knobGuid = getGuid()
+  center.html(center.html() + '<input type="text" id="knob-' + knobGuid + '">')
+
+  ## knob-ify
+  $('#knob-' + knobGuid).val(values[3]).knob({
+    width: 110,
+    angleArc: 250,
+    angleOffset: -125,
+    fgColor: '#ffffff',
+    bgColor: 'rgba(255, 255, 255, 0.3)',
+    readOnly: true,
+    displayPrevious: true,
+    min: values[1],
+    max: values[2]
+  })
 
 ############
 ## TICKER ##
@@ -162,9 +193,8 @@ initTicker = () ->
 
 # ticker text population
 loadTickerText = () ->
-  raw = newsTickerContent.split("\n")
-  real = (r.trim() for r in raw when r.trim().length > 0 && r.substr(0, 2) != '--')
-  addToTicker(r, i) for r, i in real
+  lines = readCleanLines(newsTickerContent)
+  addToTicker(r, i) for r, i in lines
 
 # add a string to the ticker
 addToTicker = (r, i) ->

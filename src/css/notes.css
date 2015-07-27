@@ -10,18 +10,21 @@
 .wrapper {
 	width: calc(100% - 12px);
 	height: calc(100% - 12px - 4em);
+	overflow: hidden;
 }
 
 .note-wrapper {
 	margin-top: 12px;
 	margin-left: 12px;
 	float: left;
+	overflow: hidden;
 }
 
 .note {
 	background: url('../images/note-point.png') no-repeat bottom right;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 
 .note-extra-bg {
@@ -40,12 +43,27 @@
 	float: none;
 }
 
-.note-center-outer {
+.note-center-outer-full {
+	width: 100%;
 	display: table;
 	text-align: center;
+	overflow: hidden;
+}
+
+.note-center-outer {
+	width: 100%;
+	display: block;
+	text-align: center;
+	overflow: hidden;
 }
 
 .note-center-inner {
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.note-center-outer-full .note-center-inner {
 	display: table-cell;
 	vertical-align: middle;
 }
@@ -164,6 +182,7 @@ p.note-title {
 	font-size: 1.8em;
 	font-weight: bold;
 	padding-top: 6px;
+	padding-bottom: 4px;
 }
 
 /*********
