@@ -18,10 +18,10 @@ window._DATA['dial-1'] = (function () {/*
 -----------------------------------------------
 
 
-Today's CSAT
+Today's GoS
 0
 100
-60
+70
 60
 
 
