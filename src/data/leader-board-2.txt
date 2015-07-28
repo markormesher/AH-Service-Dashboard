@@ -1,0 +1,30 @@
+window._DATA['leader-board-2'] = (function () {/*
+
+------------------------------------------------------
+--------------------- HOW TO USE ---------------------
+------------------------------------------------------
+-- Place leader board entries in the section below, --
+-- using the first line for the title, followed by  --
+-- names.                                           --
+------------------------------------------------------
+
+-----------------------------------------------
+-- Place your content below this line.       --
+-- DO NOT edit this line, or anything above. --
+-----------------------------------------------
+
+CSAT Transfer Champions
+
+Alice
+Bob
+Carol
+Dean
+Eddie
+Fran
+
+-----------------------------------------------
+-- DO NOT edit this line, or anything below. --
+-----------------------------------------------
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('leader-board-2');

@@ -251,3 +251,20 @@ p.clock-date {
 	text-align: right;
 	font-size: 1.2em;
 }
+
+/****************
+ * Leader board *
+ ****************/
+
+.leader-board-entry {
+	margin: 0 8%;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 1px 1px rgba(0, 0, 0, .45);
+	font-size: 1.5em;
+}
+
+.leader-board-entry span {
+	display: inline-block;
+	width: 2.2em;
+}
