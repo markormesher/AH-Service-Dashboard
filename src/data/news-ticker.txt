@@ -11,12 +11,10 @@ window._DATA['news-ticker'] = (function () {/*
 -- DO NOT edit this line, or anything above. --
 -----------------------------------------------
 
-
 Your Voice: don't forget to give us your ideas!
 Overtime available - talk to Aaditya
-Happy Birthday to John - 34 today!
+Happy Birthday to Dave - 34 today!
 No TLs from 3:00 - 3:30pm today
-
 
 -----------------------------------------------
 -- DO NOT edit this line, or anything below. --

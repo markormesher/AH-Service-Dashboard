@@ -1,13 +1,9 @@
-window._DATA['feedback'] = (function () {/*
+window._DATA['news-ticker'] = (function () {/*
 
 ------------------------------------------------------
 --------------------- HOW TO USE ---------------------
 ------------------------------------------------------
--- Place feedback in the section below, using THREE --
--- lines for each message:                          --
---  * Agent/team name (# for blank)                 --
---  * Customer message                              --
---  * Customer name and location                    --
+-- Place one message per line in the section below. --
 ------------------------------------------------------
 
 -----------------------------------------------
@@ -15,17 +11,14 @@ window._DATA['feedback'] = (function () {/*
 -- DO NOT edit this line, or anything above. --
 -----------------------------------------------
 
-Ana Maria
-Ana helped me to sort out my direct debits really easily. She was polite and friendly the whole time!
-Mark, London
-
-Fred Bloggs
-...really helped me to understand my insurance and guided me through the whole claims process.
-Amy, Birmingham
+Your Voice: don't forget to give us your ideas!
+Overtime available - talk to Aaditya
+Happy Birthday to Dave - 34 today!
+No TLs from 3:00 - 3:30pm today
 
 -----------------------------------------------
 -- DO NOT edit this line, or anything below. --
 -----------------------------------------------
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-sourceLoaded('feedback');
+sourceLoaded('news-ticker');
