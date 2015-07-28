@@ -1,0 +1,33 @@
+window._DATA['tweets'] = (function () {/*
+
+------------------------------------------------------
+--------------------- HOW TO USE ---------------------
+------------------------------------------------------
+-- Place tweets in the section below, using TWO     --
+-- lines for each tweet.                            --
+--  * The first line should be the sender's handle  --
+--  * The second line should be the entire tweet    --
+------------------------------------------------------
+
+-----------------------------------------------
+-- Place your content below this line.       --
+-- DO NOT edit this line, or anything above. --
+-----------------------------------------------
+
+
+@dogLover2015
+Very pleased with the help from @petplanuk. Great job! :D
+
+@m_s_ormo
+Enjoying building a dashboard system for @petplanuk. Coming along nicely now!
+
+@twitter_user
+Pet insurance? Can't recommend any better than Petplan.
+
+
+-----------------------------------------------
+-- DO NOT edit this line, or anything below. --
+-----------------------------------------------
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('tweets');

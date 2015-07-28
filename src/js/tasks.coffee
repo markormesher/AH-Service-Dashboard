@@ -16,10 +16,10 @@ window.onmessage = (e) ->
 reloadDataIframe = () ->
   $('#js-iframe').attr('src', 'js.html');
   setTimeout(reloadDataIframe, 5000);
-setTimeout(reloadDataIframe, 2000);
+setTimeout(reloadDataIframe, 1000);
 
 guidCount = 1;
-getGuid = () -> return ++guidCount;
+getGuid = () -> return guidCount++;
 
 # callback for a loaded information source
 window.sourceLoaded = (s) ->
@@ -70,7 +70,7 @@ notes = [
     id: 2, job: 'identify', data: null
   },
   {
-    id: 3, job: 'identify', data: null
+    id: 3, job: 'tweets', data: 'tweets'
   },
   {
     id: 4, job: 'dial', data: 'dial-1'
@@ -126,10 +126,11 @@ initNotes = (n = -1) ->
 # note loader
 loadNote = (id, role, data) ->
   switch role
-    when 'ticker' then load_ticker()
-    when 'identify' then load_identify(id)
     when 'clock' then load_clock(id)
     when 'dial' then load_dial(id, data)
+    when 'identify' then load_identify(id)
+    when 'ticker' then load_ticker()
+    when 'tweets' then load_tweets(id)
 
 ##################
 ## NOTE JOB: ID ##
@@ -193,7 +194,7 @@ getMonthName = (n) ->
 ####################
 
 load_dial = (id, data) ->
-  ## read values
+## read values
   values = readCleanLines(data)
 
   ## set up note
@@ -217,9 +218,9 @@ load_dial = (id, data) ->
     max: values[2]
   })
 
-############
-## TICKER ##
-############
+######################
+## NOTE JOB: TICKER ##
+######################
 
 # ticker info
 tickerWidth = tickerWrapperWidth = tickerLeft = 0
@@ -259,3 +260,37 @@ tickerMove = () ->
     tickerLeft = tickerWrapperWidth
   $('.ticker-text').css('margin-left', tickerLeft + 'px')
   setTimeout(tickerMove, 16)
+
+######################
+## NOTE JOB: TWEETS ##
+######################
+
+tweetsRunning = false;
+load_tweets = (id) ->
+  loadTweetText()
+  return if tweetsRunning
+  tweetsRunning = true
+  note = getNote(id)
+  bg = getBackgroundDiv(note)
+  bg.css('background-image', 'url("images/twitter-bg.png")');
+  bg.css('background-size', 'auto 85%');
+  center = getCenterDiv(bg)
+  center.html('<p class="tweet-content"></p><p class="tweet-name"></p>')
+  window._DATA['current-tweet'] = 0;
+  tweetCycle()
+
+tweetCycle = () ->
+  ++window._DATA['current-tweet']
+  window._DATA['current-tweet'] = 0 if (window._DATA['current-tweet'] >= window._DATA['tweet-text'].length)
+  $('.tweet-name').html(window._DATA['tweet-text'][window._DATA['current-tweet']][0])
+  $('.tweet-content').html("&quot;" + window._DATA['tweet-text'][window._DATA['current-tweet']][1] + "&quot;")
+  setTimeout(tweetCycle, 5000)
+
+loadTweetText = () ->
+  lines = readCleanLines('tweets')
+  window._DATA['tweet-text'] = [];
+  i = 0
+  loop
+    window._DATA['tweet-text'][window._DATA['tweet-text'].length] = [lines[i], lines[i + 1]]
+    i += 2
+    break if i >= lines.length
