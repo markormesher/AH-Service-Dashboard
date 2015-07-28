@@ -1,12 +1,13 @@
-window._DATA['tweets'] = (function () {/*
+window._DATA['feedback'] = (function () {/*
 
 ------------------------------------------------------
 --------------------- HOW TO USE ---------------------
 ------------------------------------------------------
--- Place tweets in the section below, using TWO     --
--- lines for each tweet.                            --
---  * The first line should be the sender's handle  --
---  * The second line should be the entire tweet    --
+-- Place feedback in the section below, using THREE --
+-- lines for each message:                          --
+--  * Agent/team name (# for blank)                 --
+--  * Customer message                              --
+--  * Customer name and location                    --
 ------------------------------------------------------
 
 -----------------------------------------------
@@ -15,14 +16,13 @@ window._DATA['tweets'] = (function () {/*
 -----------------------------------------------
 
 
-@dogLover2015
-Very pleased with the help from @petplanuk. Great job! :D
+Natalie Jones
+...she dealt with a change of name and was very friendly, helpful and efficient.
+Anita, London
 
-@m_s_ormo
-Enjoying building a dashboard system for @petplanuk. Coming along nicely now!
-
-@twitter_user
-Pet insurance? Can't recommend any better than Petplan.
+Fred Bloggs
+...really helped me to understand my insurance and guided me through the whole claims process.
+Charles, Birmingham
 
 
 -----------------------------------------------
@@ -30,4 +30,4 @@ Pet insurance? Can't recommend any better than Petplan.
 -----------------------------------------------
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-sourceLoaded('tweets');
+sourceLoaded('feedback');

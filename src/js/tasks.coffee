@@ -67,7 +67,7 @@ notes = [
     id: 1, job: 'clock', data: null
   },
   {
-    id: 2, job: 'identify', data: null
+    id: 2, job: 'feedback', data: 'feedback'
   },
   {
     id: 3, job: 'tweets', data: 'tweets'
@@ -128,6 +128,7 @@ loadNote = (id, role, data) ->
   switch role
     when 'clock' then load_clock(id)
     when 'dial' then load_dial(id, data)
+    when 'feedback' then load_feedback(id)
     when 'identify' then load_identify(id)
     when 'ticker' then load_ticker()
     when 'tweets' then load_tweets(id)
@@ -284,7 +285,7 @@ tweetCycle = () ->
   window._DATA['current-tweet'] = 0 if (window._DATA['current-tweet'] >= window._DATA['tweet-text'].length)
   $('.tweet-name').html(window._DATA['tweet-text'][window._DATA['current-tweet']][0])
   $('.tweet-content').html("&quot;" + window._DATA['tweet-text'][window._DATA['current-tweet']][1] + "&quot;")
-  setTimeout(tweetCycle, 5000)
+  setTimeout(tweetCycle, 15000)
 
 loadTweetText = () ->
   lines = readCleanLines('tweets')
@@ -293,4 +294,39 @@ loadTweetText = () ->
   loop
     window._DATA['tweet-text'][window._DATA['tweet-text'].length] = [lines[i], lines[i + 1]]
     i += 2
+    break if i >= lines.length
+
+########################
+## NOTE JOB: FEEDBACK ##
+########################
+
+feedbackRunning = false;
+load_feedback = (id) ->
+  loadFeedbackText()
+  return if feedbackRunning
+  feedbackRunning = true
+  note = getNote(id)
+  bg = getBackgroundDiv(note)
+  bg.css('background-image', 'url("images/feedback-bg.png")');
+  bg.css('background-size', 'auto 85%');
+  center = getCenterDiv(bg)
+  center.html('<p class="feedback-agent"></p><p class="feedback-content"></p><p class="feedback-name"></p>')
+  window._DATA['current-feedback'] = 0;
+  feedbackCycle()
+
+feedbackCycle = () ->
+  ++window._DATA['current-feedback']
+  window._DATA['current-feedback'] = 0 if (window._DATA['current-feedback'] >= window._DATA['feedback-text'].length)
+  $('.feedback-agent').html(window._DATA['feedback-text'][window._DATA['current-feedback']][0])
+  $('.feedback-content').html("&quot;" + window._DATA['feedback-text'][window._DATA['current-feedback']][1] + "&quot;")
+  $('.feedback-name').html(window._DATA['feedback-text'][window._DATA['current-feedback']][2])
+  setTimeout(feedbackCycle, 15000)
+
+loadFeedbackText = () ->
+  lines = readCleanLines('feedback')
+  window._DATA['feedback-text'] = [];
+  i = 0
+  loop
+    window._DATA['feedback-text'][window._DATA['feedback-text'].length] = [lines[i], lines[i + 1], lines[i + 2]]
+    i += 3
     break if i >= lines.length
