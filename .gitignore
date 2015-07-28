@@ -4,3 +4,6 @@
 *.ipr
 *.iws
 .idea/
+
+# CoffeeScript maps
+*.map
