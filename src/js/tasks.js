@@ -35,8 +35,8 @@
       data: 'leader-board-1'
     }, {
       id: 7,
-      job: 'identify',
-      data: null
+      job: 'slide-show',
+      data: 'slide-show'
     }, {
       id: 8,
       job: 'leader-board',
@@ -105,6 +105,8 @@
         return w.load_leader_board(id, data);
       case 'identify':
         return w.load_identify(id);
+      case 'slide-show':
+        return w.load_slide_show(id);
       case 'ticker':
         return w.load_ticker();
       case 'tweets':

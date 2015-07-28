@@ -268,3 +268,12 @@ p.clock-date {
 	display: inline-block;
 	width: 2.2em;
 }
+
+/**************
+ * Slide show *
+ **************/
+
+.slide-show-target {
+	background: none center center;
+	background-size: cover;
+}

@@ -1,0 +1,24 @@
+w._DATA['slide-show'] = (function () {/*
+
+------------------------------------------------------
+--------------------- HOW TO USE ---------------------
+------------------------------------------------------
+-- Place the name of each image in the "slide-show" --
+-- folder on each line below.                       --
+------------------------------------------------------
+
+-----------------------------------------------
+-- Place your content below this line.       --
+-- DO NOT edit this line, or anything above. --
+-----------------------------------------------
+
+cat.jpg
+puppy.jpg
+rabbit.jpg
+
+-----------------------------------------------
+-- DO NOT edit this line, or anything below. --
+-----------------------------------------------
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('slide-show');

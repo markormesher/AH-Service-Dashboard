@@ -28,7 +28,7 @@ notes = [
     id: 6, job: 'leader-board', data: 'leader-board-1'
   },
   {
-    id: 7, job: 'identify', data: null
+    id: 7, job: 'slide-show', data: 'slide-show'
   },
   {
     id: 8, job: 'leader-board', data: 'leader-board-2'
@@ -78,5 +78,6 @@ loadNote = (id, role, data) ->
     when 'feedback' then w.load_feedback(id)
     when 'leader-board' then w.load_leader_board(id, data)
     when 'identify' then w.load_identify(id)
+    when 'slide-show' then w.load_slide_show(id)
     when 'ticker' then w.load_ticker()
     when 'tweets' then w.load_tweets(id)
