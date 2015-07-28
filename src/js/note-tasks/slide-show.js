@@ -7,20 +7,21 @@
   slideShowRunning = false;
 
   w.load_slide_show = function(id) {
-    var bg, note;
+    var bg1, bg2, note;
     loadSlideShowNames();
     if (slideShowRunning) {
       return;
     }
     slideShowRunning = true;
     note = w.getNote(id);
-    note.addClass('slide-show-target');
-    bg = w.getBackgroundDiv(note);
-    bg.css('background-image', 'url("images/note-point.png")');
-    bg.css('background-position', 'bottom right');
-    bg.css('background-repeat', 'no-repeat');
+    bg1 = w.getBackgroundDiv(note);
+    bg1.addClass('slide-show-target');
+    bg2 = w.getBackgroundDiv(bg1);
+    bg2.css('background-image', 'url("images/note-point.png")');
+    bg2.css('background-position', 'bottom right');
+    bg2.css('background-repeat', 'no-repeat');
     w._DATA['current-slide-show'] = 0;
-    return slideShowCycle();
+    return setTimeout(slideShowCycle, w.slideShowDelay);
   };
 
   slideShowCycle = function() {
@@ -28,8 +29,11 @@
     if (w._DATA['current-slide-show'] >= w._DATA['slide-show-names'].length) {
       w._DATA['current-slide-show'] = 0;
     }
-    $('.slide-show-target').css('background-image', 'url("data/slide-show/' + w._DATA['slide-show-names'][w._DATA['current-slide-show']] + '")');
-    return setTimeout(slideShowCycle, 15000);
+    $('.slide-show-target').fadeOut(400, function() {
+      $('.slide-show-target').css('background-image', 'url("data/slide-show/' + w._DATA['slide-show-names'][w._DATA['current-slide-show']] + '")');
+      return $('.slide-show-target').fadeIn(400);
+    });
+    return setTimeout(slideShowCycle, w.slideShowSpeed);
   };
 
   loadSlideShowNames = function() {

@@ -1,8 +1,19 @@
+##############
+## SETTINGS ##
+##############
+
+w = window
+
+w.feedbackDelay = 0;
+w.feedbackSpeed = 15000;
+w.tweetsDelay = 5000;
+w.tweetsSpeed = 15000;
+w.slideShowDelay = 10000;
+w.slideShowSpeed = 15000;
+
 ###########
 ## NOTES ##
 ###########
-
-w = window
 
 ## define notes
 notes = [

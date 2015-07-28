@@ -7,7 +7,7 @@ w = window
 ## cycles tweets in the note
 tweetsRunning = false;
 w.load_tweets = (id) ->
-  ## reload text
+## reload text
   loadTweetText()
 
   ## init only once
@@ -20,24 +20,29 @@ w.load_tweets = (id) ->
   bg.css('background-image', 'url("images/twitter-bg.png")');
   bg.css('background-size', 'auto 85%');
   center = w.getCenterDiv(bg)
-  center.html('<p class="tweet-content"></p><p class="tweet-name"></p>')
+  center.html('<p class="tweet tweet-content"></p><p class="tweet tweet-name"></p>')
 
   ## start cycling
-  w._DATA['current-tweet'] = 0;
-  tweetCycle()
+  w._DATA['current-tweet'] = 0
+  setTimeout(tweetCycle, w.tweetsDelay)
 
 ## progresses to the next cycle
 tweetCycle = () ->
-  ## increment pointer
+## increment pointer
   ++w._DATA['current-tweet']
   w._DATA['current-tweet'] = 0 if (w._DATA['current-tweet'] >= w._DATA['tweet-text'].length)
 
   ## populate HTML
-  $('.tweet-name').html(w._DATA['tweet-text'][w._DATA['current-tweet']][0])
-  $('.tweet-content').html("&quot;" + w._DATA['tweet-text'][w._DATA['current-tweet']][1] + "&quot;")
+  $('.tweet').fadeOut(
+    400,
+    () ->
+      $('.tweet-name').html(w._DATA['tweet-text'][w._DATA['current-tweet']][0])
+      $('.tweet-content').html("&quot;" + w._DATA['tweet-text'][w._DATA['current-tweet']][1] + "&quot;")
+      $('.tweet').fadeIn(400)
+  )
 
   ## repeat
-  setTimeout(tweetCycle, 15000)
+  setTimeout(tweetCycle, w.tweetsSpeed)
 
 ## load text from file
 loadTweetText = () ->

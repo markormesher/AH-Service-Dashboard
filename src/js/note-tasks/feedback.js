@@ -18,9 +18,9 @@
     bg.css('background-image', 'url("images/feedback-bg.png")');
     bg.css('background-size', 'auto 85%');
     center = w.getCenterDiv(bg);
-    center.html('<p class="feedback-agent"></p><p class="feedback-content"></p><p class="feedback-name"></p>');
+    center.html('<p class="feedback feedback-agent"></p><p class="feedback feedback-content"></p><p class="feedback feedback-name"></p>');
     w._DATA['current-feedback'] = 0;
-    return feedbackCycle();
+    return setTimeout(feedbackCycle, w.feedbackDelay);
   };
 
   feedbackCycle = function() {
@@ -28,15 +28,13 @@
     if (w._DATA['current-feedback'] >= w._DATA['feedback-text'].length) {
       w._DATA['current-feedback'] = 0;
     }
-    if (w._DATA['feedback-text'][w._DATA['current-feedback']][0] === '#') {
-      $('.feedback-agent').hide();
-    } else {
-      $('.feedback-agent').show();
-    }
-    $('.feedback-agent').html(w._DATA['feedback-text'][w._DATA['current-feedback']][0]);
-    $('.feedback-content').html("&quot;" + w._DATA['feedback-text'][w._DATA['current-feedback']][1] + "&quot;");
-    $('.feedback-name').html(w._DATA['feedback-text'][w._DATA['current-feedback']][2]);
-    return setTimeout(feedbackCycle, 15000);
+    $('.feedback').fadeOut(400, function() {
+      $('.feedback-agent').html(w._DATA['feedback-text'][w._DATA['current-feedback']][0]);
+      $('.feedback-content').html("&quot;" + w._DATA['feedback-text'][w._DATA['current-feedback']][1] + "&quot;");
+      $('.feedback-name').html(w._DATA['feedback-text'][w._DATA['current-feedback']][2]);
+      return $('.feedback').fadeIn(400);
+    });
+    return setTimeout(feedbackCycle, w.feedbackSpeed);
   };
 
   loadFeedbackText = function() {
@@ -46,7 +44,7 @@
     i = 0;
     results = [];
     while (true) {
-      w._DATA['feedback-text'][w._DATA['feedback-text'].length] = [lines[i], lines[i + 1], lines[i + 2]];
+      w._DATA['feedback-text'][w._DATA['feedback-text'].length] = [(lines[i] === '#' ? '' : lines[i]), lines[i + 1], lines[i + 2]];
       i += 3;
       if (i >= lines.length) {
         break;

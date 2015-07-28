@@ -18,9 +18,9 @@
     bg.css('background-image', 'url("images/twitter-bg.png")');
     bg.css('background-size', 'auto 85%');
     center = w.getCenterDiv(bg);
-    center.html('<p class="tweet-content"></p><p class="tweet-name"></p>');
+    center.html('<p class="tweet tweet-content"></p><p class="tweet tweet-name"></p>');
     w._DATA['current-tweet'] = 0;
-    return tweetCycle();
+    return setTimeout(tweetCycle, w.tweetsDelay);
   };
 
   tweetCycle = function() {
@@ -28,9 +28,12 @@
     if (w._DATA['current-tweet'] >= w._DATA['tweet-text'].length) {
       w._DATA['current-tweet'] = 0;
     }
-    $('.tweet-name').html(w._DATA['tweet-text'][w._DATA['current-tweet']][0]);
-    $('.tweet-content').html("&quot;" + w._DATA['tweet-text'][w._DATA['current-tweet']][1] + "&quot;");
-    return setTimeout(tweetCycle, 15000);
+    $('.tweet').fadeOut(400, function() {
+      $('.tweet-name').html(w._DATA['tweet-text'][w._DATA['current-tweet']][0]);
+      $('.tweet-content').html("&quot;" + w._DATA['tweet-text'][w._DATA['current-tweet']][1] + "&quot;");
+      return $('.tweet').fadeIn(400);
+    });
+    return setTimeout(tweetCycle, w.tweetsSpeed);
   };
 
   loadTweetText = function() {
