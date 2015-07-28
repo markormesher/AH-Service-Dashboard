@@ -3,14 +3,14 @@
 
 </head>
 <body>
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/3rd-party/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
-	window._DATA = [];
+	w = window
+	w._DATA = [];
 	var sourceLoaded = function(x) {
 		window.top.postMessage({
-			sender: 'self',
 			source: x,
-			data: window._DATA[x]
+			data: w._DATA[x]
 		}, '*');
 	};
 </script>
