@@ -5,24 +5,50 @@
   w = window;
 
   w.load_dial = function(id, data) {
-    var center, knobGuid, note, values;
+    var center, knobGuid1, knobGuid2, note, size, values;
     values = w.readCleanLines(data);
     note = w.getNote(id);
     note.html('');
+    w.getCenterDiv(note, false);
     center = w.getCenterDiv(note, false);
-    w.setNoteTitle(center, values[0]);
-    knobGuid = w.getGuid();
-    center.html(center.html() + '<input type="text" id="knob-' + knobGuid + '">');
-    return $('#knob-' + knobGuid).val(values[3]).knob({
-      width: 110,
+    w.setNoteTitle(center.eq(0), values[0]);
+    w.setNoteTitle(center.eq(1), values[0]);
+    knobGuid1 = w.getGuid();
+    knobGuid2 = w.getGuid();
+    center.eq(0).html(center.eq(0).html() + '<input type="text" id="knob-' + knobGuid1 + '">');
+    center.eq(1).html(center.eq(1).html() + '<input type="text" id="knob-' + knobGuid2 + '">');
+    size = note.height() - center.eq(0).find('.note-title').height();
+    $('#knob-' + knobGuid1).val(values[3]).knob({
+      width: size,
       angleArc: 250,
       angleOffset: -125,
       fgColor: '#ffffff',
       bgColor: 'rgba(255, 255, 255, 0.3)',
       readOnly: true,
-      displayPrevious: true,
+      format: function(v) {
+        return v + '%';
+      },
       min: values[1],
       max: values[2]
+    });
+    $('#knob-' + knobGuid2).val(values[4]).knob({
+      width: size,
+      angleArc: 250,
+      angleOffset: -125,
+      fgColor: note.css('background-color'),
+      bgColor: 'transparent',
+      readOnly: true,
+      cursor: 3,
+      thickness: 0.4,
+      displayInput: false,
+      min: values[1],
+      max: values[2]
+    });
+    return center.eq(1).css({
+      float: 'right',
+      position: 'relative',
+      'margin-top': '-' + center.eq(0).height() + 'px',
+      'z-index': 1000
     });
   };
 
