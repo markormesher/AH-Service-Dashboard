@@ -17,12 +17,6 @@ w._DATA['dial-1'] = (function () {/*
 -- DO NOT edit this line, or anything above. --
 -----------------------------------------------
 
--------------------------------------------------------
--- This sample creates a dial labelled "Today's GoS" --
--- that ranges from 0 to 100. The current value is   --
--- 68, and the target is 75.                         --
--------------------------------------------------------
-
 Today's GoS
 0
 100
