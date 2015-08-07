@@ -211,8 +211,7 @@ p.clock-date {
 .tweet-content, .tweet-name {
 	margin: 0 8%;
 	font-weight: bold;
-	color: #ffffff;
-	text-shadow: 1px 1px rgba(0, 0, 0, .45);
+	color: rgb(0, 85, 164);
 }
 
 .tweet-content {
@@ -276,4 +275,21 @@ p.clock-date {
 .slide-show-target {
 	background: none center center;
 	background-size: cover;
+}
+
+/****************
+ * Call volumes *
+ ****************/
+
+.call-volumes-line {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: rgb(0, 85, 164);
+}
+
+.call-volumes-line span {
+	font-size: 140%;
+	color: rgb(201, 37, 44);
+	font-weight: bold;
+	text-shadow: 1px 1px rgba(0, 0, 0, .45);
 }

@@ -55,15 +55,15 @@
       data: 'leader-board-2'
     }, {
       id: 9,
-      job: 'identify',
-      data: null
+      job: 'call-volumes',
+      data: 'call-volumes'
     }, {
       id: 10,
-      job: 'identify',
+      job: '',
       data: null
     }, {
       id: 11,
-      job: 'identify',
+      job: '',
       data: null
     }
   ];
@@ -107,6 +107,8 @@
   loadNote = function(id, role, data) {
     w = window;
     switch (role) {
+      case 'call-volumes':
+        return w.load_call_volumes(id, data);
       case 'clock':
         return w.load_clock(id);
       case 'dial':

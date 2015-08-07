@@ -45,13 +45,13 @@ notes = [
     id: 8, job: 'leader-board', data: 'leader-board-2'
   },
   {
-    id: 9, job: 'identify', data: null
+    id: 9, job: 'call-volumes', data: 'call-volumes'
   },
   {
-    id: 10, job: 'identify', data: null
+    id: 10, job: '', data: null
   },
   {
-    id: 11, job: 'identify', data: null
+    id: 11, job: '', data: null
   }
 ]
 
@@ -84,6 +84,7 @@ window.initNotes = (n = -1) ->
 loadNote = (id, role, data) ->
   w = window
   switch role
+    when 'call-volumes' then w.load_call_volumes(id, data)
     when 'clock' then w.load_clock(id)
     when 'dial' then w.load_dial(id, data)
     when 'feedback' then w.load_feedback(id)

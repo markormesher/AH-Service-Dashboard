@@ -1,0 +1,33 @@
+w._DATA['call-volumes'] = (function () {/*
+
+-------------------------------------------------------
+--------------------- HOW TO USE ----------------------
+-------------------------------------------------------
+-- Places lines for the call-volume tile in the area --
+-- below, using TWO lines for each sentence:         --
+--  * The sentence, with '###' where you would like  --
+--    the number to appear (bold formatted)          --
+--  * The number, to be placed where '###' appears   --
+--    in the first line                              --
+-------------------------------------------------------
+
+-----------------------------------------------
+-- Place your content below this line.       --
+-- DO NOT edit this line, or anything above. --
+-----------------------------------------------
+
+Expected volume today: ###
+2,234
+
+There are ### agents in today
+30
+
+So you'll take about ### calls/hour
+6
+
+-----------------------------------------------
+-- DO NOT edit this line, or anything below. --
+-----------------------------------------------
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+sourceLoaded('call-volumes');
