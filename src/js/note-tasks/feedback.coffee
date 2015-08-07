@@ -54,7 +54,7 @@ loadFeedbackText = () ->
     w._DATA['feedback-text'][w._DATA['feedback-text'].length] = [
       (if lines[i] == '#' then '' else lines[i]),
       lines[i + 1],
-      lines[i + 2]
+      (if lines[i + 2] == '#' then '' else lines[i + 2])
     ]
     i += 3
     break if i >= lines.length

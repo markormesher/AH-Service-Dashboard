@@ -44,7 +44,7 @@
     i = 0;
     results = [];
     while (true) {
-      w._DATA['feedback-text'][w._DATA['feedback-text'].length] = [(lines[i] === '#' ? '' : lines[i]), lines[i + 1], lines[i + 2]];
+      w._DATA['feedback-text'][w._DATA['feedback-text'].length] = [(lines[i] === '#' ? '' : lines[i]), lines[i + 1], (lines[i + 2] === '#' ? '' : lines[i + 2])];
       i += 3;
       if (i >= lines.length) {
         break;
