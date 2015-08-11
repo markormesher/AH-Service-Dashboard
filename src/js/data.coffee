@@ -9,6 +9,11 @@ w._HOOKS = {}
 
 ## receive data
 w.onmessage = (e) ->
+  ## refresh command?
+  if (e.data.data == 'REFRESH')
+    location.reload()
+    return
+
   w._DATA[e.data.source] = e.data.data
   ## initialise any notes waiting for this data
   for name, waiting of w._HOOKS

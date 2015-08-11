@@ -10,6 +10,10 @@
 
   w.onmessage = function(e) {
     var i, name, ref, results, waiting;
+    if (e.data.data === 'REFRESH') {
+      location.reload();
+      return;
+    }
     w._DATA[e.data.source] = e.data.data;
     ref = w._HOOKS;
     results = [];
