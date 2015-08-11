@@ -38,7 +38,7 @@ slideShowCycle = () ->
   pic = w._DATA['slide-show-names'][w._DATA['current-slide-show']]
   note = ""
   if (pic.indexOf(" - ") > 0)
-    parts = pic.split("-");
+    parts = pic.split(" - ");
     pic = parts[0].trim();
     note = parts[1].trim();
 
