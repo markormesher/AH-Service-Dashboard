@@ -40,7 +40,11 @@
     }
     $('.slide-show-target').fadeOut(400, function() {
       $('.slide-show-target').css('background-image', 'url("data/slide-show/' + pic + '")');
-      $('.slide-show-title').html("<p>" + note + "</p>");
+      if (note === "") {
+        $('.slide-show-title').hide();
+      } else {
+        $('.slide-show-title').html("<p>" + note + "</p>").show();
+      }
       return $('.slide-show-target').fadeIn(400);
     });
     return setTimeout(slideShowCycle, w.slideShowSpeed);

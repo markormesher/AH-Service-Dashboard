@@ -50,7 +50,12 @@ slideShowCycle = () ->
         'background-image',
         'url("data/slide-show/' + pic + '")'
       )
-      $('.slide-show-title').html("<p>#{note}</p>")
+
+      ## set note
+      if (note == "")
+        $('.slide-show-title').hide()
+      else
+        $('.slide-show-title').html("<p>#{note}</p>").show()
       $('.slide-show-target').fadeIn(400)
   )
 
