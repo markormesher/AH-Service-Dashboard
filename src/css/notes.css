@@ -277,6 +277,27 @@ p.clock-date {
 	background-size: cover;
 }
 
+.slide-show-target div {
+	height: 100%;
+	position: relative;
+}
+
+.slide-show-title {
+	position: absolute !important;
+	bottom: 5px;
+	left: 5px;
+	height: auto !important;
+}
+
+.slide-show-title p {
+	margin: 0;
+	padding: 5px 20px;
+	font-weight: bold;
+	font-size: 2em;
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, .45);
+}
+
 /****************
  * Call volumes *
  ****************/

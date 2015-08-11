@@ -22,6 +22,7 @@ w.load_slide_show = (id) ->
   bg2.css('background-image', 'url("images/note-point.png")');
   bg2.css('background-position', 'bottom right');
   bg2.css('background-repeat', 'no-repeat');
+  bg2.html('<div class="slide-show-title"></div>')
 
   ## start cycling
   w._DATA['current-slide-show'] = 0
@@ -29,18 +30,27 @@ w.load_slide_show = (id) ->
 
 ## progresses to the next cycle
 slideShowCycle = () ->
-## increment pointer
+  ## increment pointer
   ++w._DATA['current-slide-show']
   w._DATA['current-slide-show'] = 0 if (w._DATA['current-slide-show'] >= w._DATA['slide-show-names'].length)
 
-  ## change BG
+  ## get next picture and optional comment
+  pic = w._DATA['slide-show-names'][w._DATA['current-slide-show']]
+  note = ""
+  if (pic.indexOf(" - ") > 0)
+    parts = pic.split("-");
+    pic = parts[0].trim();
+    note = parts[1].trim();
+
+  ## set BG
   $('.slide-show-target').fadeOut(
     400,
     () ->
       $('.slide-show-target').css(
         'background-image',
-        'url("data/slide-show/' + w._DATA['slide-show-names'][w._DATA['current-slide-show']] + '")'
+        'url("data/slide-show/' + pic + '")'
       )
+      $('.slide-show-title').html("<p>#{note}</p>")
       $('.slide-show-target').fadeIn(400)
   )
 

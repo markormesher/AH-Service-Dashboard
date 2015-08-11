@@ -13,7 +13,7 @@ w._DATA['slide-show'] = (function () {/*
 -----------------------------------------------
 
 cat.jpg
-puppy.jpg
+puppy.jpg - So cute!
 rabbit.jpg
 
 -----------------------------------------------
