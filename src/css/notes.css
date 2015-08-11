@@ -181,6 +181,7 @@ p.note-title {
 	text-shadow: 1px 1px rgba(0, 0, 0, .45);
 	text-align: center;
 	font-size: 1.8em;
+	font-family: "American Typewriter", Calibri, sans-serif;
 	font-weight: bold;
 	padding-top: 6px;
 	padding-bottom: 4px;
@@ -194,6 +195,7 @@ p.clock-time, p.clock-date {
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
+	font-family: "American Typewriter", Calibri, sans-serif;
 }
 
 p.clock-time {
@@ -238,6 +240,7 @@ p.clock-date {
 .feedback-agent {
 	text-align: left;
 	font-size: 1.6em;
+	font-family: "American Typewriter", Calibri, sans-serif;
 }
 
 .feedback-content {
@@ -293,6 +296,7 @@ p.clock-date {
 	margin: 0;
 	padding: 5px 20px;
 	font-weight: bold;
+	font-family: "American Typewriter";
 	font-size: 2em;
 	color: #ffffff;
 	background-color: rgba(0, 0, 0, .45);
@@ -312,5 +316,6 @@ p.clock-date {
 	font-size: 140%;
 	color: rgb(201, 37, 44);
 	font-weight: bold;
+	font-family: "American Typewriter", Calibri, sans-serif;
 	text-shadow: 1px 1px rgba(0, 0, 0, .45);
 }
