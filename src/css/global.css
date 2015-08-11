@@ -1,6 +1,7 @@
 @font-face {
 	font-family: "American Typewriter";
-	src: url('american-typewriter.ttf');
+	src: url('american-typewriter.eot');
+	src: local('American Typewriter Regular'), url('american-typewriter.ttf');
 }
 
 body {
